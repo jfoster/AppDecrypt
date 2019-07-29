@@ -1,0 +1,7 @@
+Package: com.rave.dumpdecrypt
+Name: AppDecrypt
+Architecture: iphoneos-arm
+Description: A fork of dumpdecrypted by Stefan Esser. Usage: Run "appdecrypt" from the command line. Copyright 2011-2015 Stefan Esser.
+Author: Stefan Esser, Alex Manzella, Jonas Gessner & Jacob Foster.
+Section: Development
+Version: 1.1

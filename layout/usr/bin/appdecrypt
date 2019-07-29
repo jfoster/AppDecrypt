@@ -1,0 +1,37 @@
+#!/bin/sh
+
+function dec
+{
+	echo
+	echo Decrypting...
+	echo
+	DYLD_INSERT_LIBRARIES=/usr/lib/appdecrypt.dylib $1 mach-o decryption dumper
+	echo
+}
+
+function app
+{
+	echo "Locating $1 ..."
+	tempLoc=$(find /var/mobile/Containers/Bundle/Application -maxdepth 2 -iname $1.app)
+	dir=$(dirname "$tempLoc")
+	echo $tempLoc
+	echo
+	dec $tempLoc/$1
+}
+
+case $1 in
+	''|-h)
+		echo Usage : decrypt [option] [file]
+		echo -e '\t -h \t\tto Help'
+		echo -e '\t -a or --app [AppName]\tto Find an App Path'
+		echo -e '\t [file]\t\tto decrypt'
+		echo
+		;;
+	-a|--app)
+		app $2
+		echo $dir
+		;;
+	*)
+		dec $1
+		;;
+esac
